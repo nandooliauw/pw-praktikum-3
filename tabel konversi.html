@@ -1,0 +1,75 @@
+<!DOCTYPE html> 
+<html lang="en" dir="ltr"> 
+
+<head> 
+	<meta charset="utf-8"> 
+	<title> 
+		tabel Konversi
+	</title> 
+</head> 
+<body style="text-align: center;"> 
+	
+	<h1 style="color: #000000;" id="all"> 
+		Tabel Konversi 
+	</h1> 
+    <table border="1">
+	<h3 id="mv">Masukkan Data</h3> 
+	<form class="" action="index.html" method="post"> 
+        <input type="number" name="array[]" value="" placeholder="Nomor Barang"/><br> 
+		<input type="text" name="array[]" value="" placeholder="Nama Barang"/><br> 
+		<input type="number" name="array[]" value="" placeholder="Stok Barang"/><br> 
+        <h3 id="al">Isi Salah Satu</h3>
+		<input type="number" name="array[]" value="" placeholder="Berat Barang (kg)"/><br> 
+		<input type="number" name="array[]" value="" placeholder="Berat Barang (g)"/><br> 
+		<input type="number" name="array[]" value="" placeholder="Berat Barang (mg)"/><br> 
+		<button type="button" name="button" onclick="ns()"> 
+			Tambahkan 
+		</button> 
+	</form> 
+	<br> 
+    
+	<p id="var"></p> 
+
+	<script type="text/javascript"> 
+		var v = "Hasil Konversi"; 
+		function ns() { 
+			var input = document.getElementsByName('array[]'); 
+
+				var p = input[0]; 
+				v = v + "<br/> Nomor Barang: " + p.value + "<br/>"; 
+			
+                var p = input[1]; 
+				v = v + "Nama Barang: " + p.value + "<br/>";
+
+                var p = input[2];
+                var stok = input[2];
+                if (stok.value == 0) {document.body.style.backgroundColor = "red"; document.getElementById("al").style.color = "#ffffff";
+                document.getElementById("all").style.color = "#ffffff";
+                document.getElementById("all").innerHTML = "STOK KOSONG!!!!"
+                document.getElementById("mv").style.color = "#ffffff";}
+				v = v + "Stok Barang: " + p.value + "<br/>";
+
+                var kg = input[3];
+                var g = input[4];
+                var mg = input[5];
+                if (g.value == 0 && mg.value == 0){g.value = kg.value * 1000, mg.value = kg.value * 1000000}
+                else if (kg.value == 0 && mg.value == 0){kg.value = g.value / 1000, mg.value = g.value * 1000}
+                else if (kg.value == 0 && g.value == 0){kg.value = mg.value / 1000000, g.value = mg.value / 1000}
+                else {kg.value="error", g.value="error", mg.value="error"}
+
+				v = v + "Berat Barang: " + kg.value + " kilogram<br/>";
+
+				v = v + "Berat Barang: " + g.value + " gram<br/>";
+
+				v = v + "Berat Barang: " + mg.value + " miligram<br/>";
+
+                v = v + "<br/>Berat Seluruh Stok: " + kg.value * stok.value + " kilogram<br/>";
+
+			document.getElementById("var").innerHTML = v; 
+			document.getElementById("mv").innerHTML = "Output"; 
+		} 
+	</script> 
+    </table>
+</body> 
+
+</html> 
